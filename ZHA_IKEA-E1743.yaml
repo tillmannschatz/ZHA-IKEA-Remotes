@@ -15,7 +15,7 @@ blueprint:
           filter:
             - integration: zha
               manufacturer: IKEA of Sweden
-              model: TRADFRI remote control
+              model: TRADFRI on/off switch
     interval:
       name: Max Interval between Clicks
       description:
