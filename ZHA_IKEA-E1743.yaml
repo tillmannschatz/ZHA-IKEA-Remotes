@@ -197,8 +197,6 @@ action:
                 event_type: zha_event
                 event_data:
                   device_id: !input remote
-                  endpoint_id: 1
-                  cluster_id: 6
                   command: "on"
             timeout: "{{interval}}"
             continue_on_timeout: true
@@ -218,8 +216,6 @@ action:
                     event_type: zha_event
                     event_data:
                       device_id: !input remote
-                      endpoint_id: 1
-                      cluster_id: 6
                       command: "on"
                 timeout: "{{interval}}"
                 continue_on_timeout: true
@@ -274,8 +270,6 @@ action:
                 event_type: zha_event
                 event_data:
                   device_id: !input remote
-                  endpoint_id: 1
-                  cluster_id: 6
                   command: "off"
             timeout: "{{interval}}"
             continue_on_timeout: true
@@ -295,8 +289,6 @@ action:
                     event_type: zha_event
                     event_data:
                       device_id: !input remote
-                      endpoint_id: 1
-                      cluster_id: 6
                       command: "off"
                 timeout: "{{interval}}"
                 continue_on_timeout: true
@@ -329,7 +321,7 @@ action:
                       event_type: zha_event
                       event_data:
                         device_id: !input remote
-                        command: stop
+                        command: stop_with_on_off
                   timeout: "{{repeat_interval}}"
           # Release down button
           - choose: []
