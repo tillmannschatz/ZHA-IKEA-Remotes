@@ -270,11 +270,13 @@ action:
           - choose: []
             default: !input button_down_x1_immediate
           - wait_for_trigger:
-              - device_id: !input remote
-                domain: zha
-                platform: device
-                type: remote_button_short_press
-                subtype: dim_down
+              - platform: event
+                event_type: zha_event
+                event_data:
+                  device_id: !input remote
+                  endpoint_id: 1
+                  cluster_id: 6
+                  command: "off"
             timeout: "{{interval}}"
             continue_on_timeout: true
           - if:
@@ -289,11 +291,13 @@ action:
               - choose: []
                 default: !input button_down_x2_immediate
               - wait_for_trigger:
-                  - device_id: !input remote
-                    domain: zha
-                    platform: device
-                    type: remote_button_short_press
-                    subtype: dim_down
+                  - platform: event
+                    event_type: zha_event
+                    event_data:
+                      device_id: !input remote
+                      endpoint_id: 1
+                      cluster_id: 6
+                      command: "off"
                 timeout: "{{interval}}"
                 continue_on_timeout: true
               - if:
