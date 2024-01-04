@@ -163,6 +163,10 @@ mode: single
 max_exceeded: silent
 
 variables:
+  command: "{{ trigger.event.data.command }}"
+  cluster_id: "{{ trigger.event.data.cluster_id }}"
+  endpoint_id: "{{ trigger.event.data.endpoint_id }}"
+  args: "{{ trigger.event.data.args }}"
   time: " {{ as_timestamp(now()) }} "
   interval: !input interval
   repeat_interval: !input repeat_interval
@@ -181,8 +185,9 @@ action:
       #            Up button             #
       ####################################
       - conditions:
-          - condition: template
-            value_template: '{{ trigger.event.data.command == "step_with_on_off" }}'
+        - "{{ command == 'on' }}"
+        - "{{ cluster_id == 6 }}"
+        - "{{ endpoint_id == 1 }}"
         sequence:
           # Immediate 1x-Press up button
           - choose: []
@@ -223,8 +228,9 @@ action:
                 else: !input button_up_x3
       # Hold up button
       - conditions:
-          - condition: template
-            value_template: '{{ trigger.event.data.command == "move_with_on_off" }}'
+        - "{{ command == 'move_with_on_off' }}"
+        - "{{ cluster_id == 8 }}"
+        - "{{ endpoint_id == 1 }}"
         sequence:
           # Hold up button
           - choose: []
@@ -252,8 +258,9 @@ action:
       #           Down button            #
       ####################################
       - conditions:
-          - condition: template
-            value_template: '{{ trigger.event.data.command == "step" }}'
+        - "{{ command == 'off' }}"
+        - "{{ cluster_id == 6 }}"
+        - "{{ endpoint_id == 1 }}"
         sequence:
           # Immediate 1x-Press down button
           - choose: []
@@ -294,8 +301,9 @@ action:
                 else: !input button_down_x3
       # Hold down button
       - conditions:
-          - condition: template
-            value_template: '{{ trigger.event.data.command == "move" }}'
+        - "{{ command == 'move' }}"
+        - "{{ cluster_id == 8 }}"
+        - "{{ endpoint_id == 1 }}"
         sequence:
           # Hold down button
           - choose: []
